@@ -18,7 +18,6 @@
                         <th>Name</th>
                         <th>Email</th>
                         <th>Role</th>
-                        <th>Joined On</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -30,7 +29,6 @@
                             <td>
                                 <span class="badge-role-{{ $user->role }}">{{ $user->roleLabel() }}</span>
                             </td>
-                            <td>{{ $user->created_at->format('d M Y') }}</td>
                             <td>
                                 <a href="{{ route('users.edit', $user) }}" class="action-edit">Edit</a>
                                 @if($user->id !== auth()->id())
@@ -44,7 +42,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="text-muted">No users found.</td>
+                            <td colspan="4" class="text-muted">No users found.</td>
                         </tr>
                     @endforelse
                 </tbody>
