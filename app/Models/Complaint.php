@@ -12,6 +12,7 @@ class Complaint extends Model
         'complainant_name',
         'phone',
         'location',
+        'village',
         'region',
         'department',
         'description',

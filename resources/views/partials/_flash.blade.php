@@ -19,6 +19,18 @@
     </div>
 @endif
 
+@if(session('import_errors'))
+    <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Some rows could not be imported:</strong>
+        <ul class="mb-0 ps-3 mt-2">
+            @foreach(session('import_errors') as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+@endif
+
 @if($errors->any())
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <ul class="mb-0 ps-3">

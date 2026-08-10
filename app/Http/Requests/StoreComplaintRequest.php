@@ -19,6 +19,7 @@ class StoreComplaintRequest extends FormRequest
             'phone' => ['required', 'string', 'max:30'],
             'location' => ['required', 'string', 'max:255'],
             'region' => ['required', Rule::in(config('complaints.regions'))],
+            'village' => ['nullable', 'string', 'max:255'],
             'department' => ['required', Rule::in(config('complaints.departments'))],
             'description' => ['required', 'string'],
             'priority' => ['required', Rule::in(array_keys(config('complaints.priorities')))],

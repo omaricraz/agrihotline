@@ -17,6 +17,9 @@
                         <i class="bi bi-download"></i> Export to Excel
                     </a>
                 @endif
+                <a href="{{ route('complaints.import') }}" class="btn btn-import">
+                    <i class="bi bi-upload"></i> Import Excel
+                </a>
                 <a href="{{ route('complaints.create') }}" class="btn btn-new">New Complaint</a>
             </div>
         </div>

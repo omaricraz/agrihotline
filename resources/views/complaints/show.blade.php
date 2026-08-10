@@ -23,6 +23,10 @@
             <div class="form-control" style="pointer-events:none;">{{ $complaint->region }}</div>
         </div>
         <div class="mb-3">
+            <label>Village</label>
+            <div class="form-control" style="pointer-events:none;">{{ $complaint->village ?: '—' }}</div>
+        </div>
+        <div class="mb-3">
             <label>Department</label>
             <div class="form-control" style="pointer-events:none;">{{ $complaint->department }}</div>
         </div>

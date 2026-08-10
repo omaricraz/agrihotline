@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\ComplaintController;
+use App\Http\Controllers\ComplaintImportController;
 use App\Http\Controllers\ComplaintReportController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
@@ -27,6 +28,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/complaints', [ComplaintController::class, 'index'])->name('complaints.index');
     Route::get('/complaints/create', [ComplaintController::class, 'create'])->name('complaints.create');
     Route::post('/complaints', [ComplaintController::class, 'store'])->name('complaints.store');
+    Route::get('/complaints/import', [ComplaintImportController::class, 'create'])->name('complaints.import');
+    Route::post('/complaints/import', [ComplaintImportController::class, 'store'])->name('complaints.import.store');
+    Route::get('/complaints/import/template', [ComplaintImportController::class, 'template'])->name('complaints.import.template');
 
     Route::middleware('role:admin,manager')->group(function () {
         Route::get('/complaints/report/pdf', [ComplaintReportController::class, 'pdf'])->name('complaints.report.pdf');

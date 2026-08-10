@@ -35,6 +35,11 @@
             </div>
 
             <div class="mb-3">
+                <label for="village">Village</label>
+                <input type="text" id="village" name="village" value="{{ old('village') }}" class="form-control">
+            </div>
+
+            <div class="mb-3">
                 <label for="department">Department</label>
                 <select id="department" name="department" class="form-select" required>
                     <option value="">Select department</option>

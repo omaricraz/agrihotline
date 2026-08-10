@@ -281,6 +281,22 @@ a {
     color: #fff;
 }
 
+.btn-import {
+    background: #7c3aed;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 0.5rem 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+}
+
+.btn-import:hover {
+    background: #6d28d9;
+    color: #fff;
+}
+
 .btn-new {
     background: #2563eb;
     color: #fff;
