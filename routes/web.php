@@ -38,9 +38,9 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::get('/complaints/{complaint}', [ComplaintController::class, 'show'])->name('complaints.show');
-    Route::patch('/complaints/{complaint}/status', [ComplaintController::class, 'updateStatus'])
-        ->middleware('role:admin,manager')
-        ->name('complaints.status');
+    Route::patch('/complaints/{complaint}', [ComplaintController::class, 'update'])->name('complaints.update');
+    Route::post('/complaints/{complaint}/notes', [ComplaintController::class, 'storeNote'])
+        ->name('complaints.notes.store');
 
     Route::middleware('role:admin')->group(function () {
         Route::resource('users', UserController::class)->except(['show']);

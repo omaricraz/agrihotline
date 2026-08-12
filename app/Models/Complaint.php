@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Complaint extends Model
 {
@@ -24,6 +25,11 @@ class Complaint extends Model
     public function creator(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');
+    }
+
+    public function notes(): HasMany
+    {
+        return $this->hasMany(ComplaintNote::class)->latest();
     }
 
     public function scopeSearch(Builder $query, ?string $term): Builder

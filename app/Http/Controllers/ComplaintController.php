@@ -44,19 +44,38 @@ class ComplaintController extends Controller
 
     public function show(Complaint $complaint): View
     {
-        $complaint->load('creator');
+        $complaint->load(['creator', 'notes.user']);
 
         return view('complaints.show', compact('complaint'));
     }
 
-    public function updateStatus(Request $request, Complaint $complaint): RedirectResponse
+    public function update(StoreComplaintRequest $request, Complaint $complaint): RedirectResponse
     {
-        $data = $request->validate([
-            'status' => ['required', Rule::in(array_keys(config('complaints.statuses')))],
-        ]);
+        $data = $request->validated();
+
+        if ($request->user()->canUpdateStatus()) {
+            $statusData = $request->validate([
+                'status' => ['required', Rule::in(array_keys(config('complaints.statuses')))],
+            ]);
+            $data['status'] = $statusData['status'];
+        }
 
         $complaint->update($data);
 
-        return back()->with('success', 'Complaint status updated.');
+        return back()->with('success', 'Complaint updated.');
+    }
+
+    public function storeNote(Request $request, Complaint $complaint): RedirectResponse
+    {
+        $data = $request->validate([
+            'body' => ['required', 'string', 'max:5000'],
+        ]);
+
+        $complaint->notes()->create([
+            'user_id' => $request->user()->id,
+            'body' => $data['body'],
+        ]);
+
+        return back()->with('success', 'Note added.');
     }
 }
